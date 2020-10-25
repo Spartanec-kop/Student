@@ -83,6 +83,6 @@ namespace StudentData.Infrastructure.Business
         public IEnumerable<Group> GetStudents(string name, int firstItem, int pageCount)
         {
             throw new NotImplementedException();
-        } 
+        }
     }
 }

@@ -41,6 +41,7 @@ namespace StudentData
             services.AddTransient<IGroupsServices, GroupsServices>();
             services.AddTransient<IRepository<Student>, StudentRepository>();
             services.AddTransient<IRepository<Group>, GroupRepository>();
+            services.AddTransient<IStudentGroupRepository, StudentGroupRepository>();
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddControllers();
             // added CORS

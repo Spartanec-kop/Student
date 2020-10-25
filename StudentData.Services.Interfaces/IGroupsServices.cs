@@ -9,7 +9,7 @@ namespace StudentData.Services.Interfaces
 {
     public interface IGroupsServices
     {
-        Task<PagedViewModel<GroupView>> GetGroups(string name, int pageNumber, int pageSize);
+        Task<PagedViewModel<GroupView>> GetGroups(string name, int pageNumber, int pageSize); 
         void Create(Group group);
         void Update(Group group);
         void Delete(Int64 id);

@@ -37,7 +37,7 @@ namespace StudentData.Api.Controllers
 
         // PUT api/<GroupsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] SG.Group group)
+        public void Put([FromBody] SG.Group group)
         {
             groupServices.Update(group);
         }
@@ -47,6 +47,13 @@ namespace StudentData.Api.Controllers
         public void Delete(int id)
         {
             groupServices.Delete(id);
+        }
+
+        [Route("api/AddStudentToGroup")]
+        [HttpPut]
+        public void AddStudentToGroup (Int64 studentId, Int64 groupId)
+        {
+            groupServices.AddStudentToGroup(studentId, groupId);
         }
     }
 }
