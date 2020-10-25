@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentData.Infrastructure.Data", "StudentData.Infrastructure.Data\StudentData.Infrastructure.Data.csproj", "{AF97ADCE-1F6F-4EF0-A33F-3C23DC54A857}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentData.Infrastructure.Business", "StudentData.Infrastructure.Business\StudentData.Infrastructure.Business.csproj", "{24E3B162-7D81-4A73-ABB6-E772374BD15A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{AF97ADCE-1F6F-4EF0-A33F-3C23DC54A857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF97ADCE-1F6F-4EF0-A33F-3C23DC54A857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF97ADCE-1F6F-4EF0-A33F-3C23DC54A857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E3B162-7D81-4A73-ABB6-E772374BD15A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E3B162-7D81-4A73-ABB6-E772374BD15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E3B162-7D81-4A73-ABB6-E772374BD15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E3B162-7D81-4A73-ABB6-E772374BD15A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{8F7D8B9C-2D66-49E6-8D5E-F589B1F4E6C1} = {8C67EE1F-C62B-4687-904B-FA321A2B7896}
 		{69D92282-5CAA-46A9-B4D7-8932247652DB} = {91D560FF-B43F-450D-BD1D-11C9610BEDA3}
 		{AF97ADCE-1F6F-4EF0-A33F-3C23DC54A857} = {453C09B7-7473-498A-B37F-832B80953DD4}
+		{24E3B162-7D81-4A73-ABB6-E772374BD15A} = {453C09B7-7473-498A-B37F-832B80953DD4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7191EA19-27E6-48A5-91A6-D45C2E3F5D4B}

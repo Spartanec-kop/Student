@@ -10,6 +10,7 @@ namespace StudentData.Domain.Core
         public bool Sex { get; set; }
         public string LastNam { get; set; }
         public string Name { get; set; }
+        public string MiddleName { get; set; }
         public string NickName { get; set; }
         public List<StudentGroup> StudentGroups { get; set; }
         public Student()

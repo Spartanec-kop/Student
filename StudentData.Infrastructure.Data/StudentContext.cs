@@ -6,6 +6,10 @@ namespace StudentData.Infrastructure.Data
 {
     public class StudentContext : DbContext
     {
+        public StudentContext(DbContextOptions<StudentContext> options)
+            : base(options)
+        {
+        }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
         public StudentContext()
