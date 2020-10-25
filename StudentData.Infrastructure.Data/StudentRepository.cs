@@ -60,9 +60,9 @@ namespace StudentData.Infrastructure.Data
             }
         }
 
-        public async void Save()
+        public void Save()
         {
-            await db.SaveChangesAsync();
+            db.SaveChanges();
         }
         public virtual void Dispose(bool disposing)
         {

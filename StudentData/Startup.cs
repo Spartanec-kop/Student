@@ -39,6 +39,7 @@ namespace StudentData
 
             services.AddTransient<IStudentsServices, StudentsServices>();
             services.AddTransient<IGroupsServices, GroupsServices>();
+            services.AddTransient<IStudentGroupServices, StudentGroupServices>();
             services.AddTransient<IRepository<Student>, StudentRepository>();
             services.AddTransient<IRepository<Group>, GroupRepository>();
             services.AddTransient<IStudentGroupRepository, StudentGroupRepository>();
