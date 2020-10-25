@@ -15,12 +15,10 @@ namespace StudentData.Api.Controllers
     [ApiController]
     public class GroupsController : ControllerBase
     {
-        IRepository<SG.Group> repositoryGroup;
         IGroupsServices groupServices;
 
-        public GroupsController(IRepository<SG.Group> repository, IGroupsServices services)
+        public GroupsController(IGroupsServices services)
         {
-            repositoryGroup = repository;
             groupServices = services;
         }
         // GET: api/<GroupsController>
@@ -28,13 +26,6 @@ namespace StudentData.Api.Controllers
         public async Task<PagedViewModel<GroupView>> Get(string name, int pageNumber, int pageSize)
         {
             return await groupServices.GetGroups(name, pageNumber, pageSize);
-        }
-
-        // GET api/<GroupsController>/5
-        [HttpGet("{id}")]
-        public async Task<SG.Group> Get(int id)
-        {
-            return await repositoryGroup.GetId(id);
         }
 
         // POST api/<GroupsController>

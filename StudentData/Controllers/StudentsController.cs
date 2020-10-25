@@ -16,11 +16,9 @@ namespace StudentData.Api.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        IRepository<Student> repositoryStudent;
         IStudentsServices studentsServices;
-        public StudentsController(IRepository<Student> repository, IStudentsServices services)
+        public StudentsController( IStudentsServices services)
         {
-            repositoryStudent = repository;
             studentsServices = services;
         }
         // GET: api/<StudentsController>
@@ -28,13 +26,6 @@ namespace StudentData.Api.Controllers
         public async Task<PagedViewModel<StudentView>> Get([FromQuery] StudentFilters filters, int pageNumber, int pageSize)
         {
             return await studentsServices.GetStudents(filters, pageNumber, pageSize);
-        }
-
-        // GET api/<StudentsController>/5
-        [HttpGet("{id}")]
-        public async Task<Student> Get(int id)
-        {
-            return await repositoryStudent.GetId(id);
         }
 
         // POST api/<StudentsController>
