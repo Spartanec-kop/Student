@@ -32,13 +32,13 @@ namespace StudentData.Infrastructure.Data
 
         public IEnumerable<Group> Find(Expression<Func<Group, bool>> predicate)
         {
-            IQueryable<Group> query = db.Groups.Where(predicate);
-            return query.ToList();
+            IQueryable<Group> query = db.Groups.Include(c => c.StudentGroups).ThenInclude(sc => sc.Student).Where(predicate);
+            return query;
         }
 
         public async Task<int> recordCount(Expression<Func<Group, bool>> predicate)
         {
-            IQueryable<Group> query = db.Groups.Where(predicate);
+            IQueryable<Group> query = db.Groups.Include(c => c.StudentGroups).ThenInclude(sc => sc.Student).Where(predicate);
             return await query.CountAsync();
         }
 

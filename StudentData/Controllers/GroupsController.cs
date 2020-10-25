@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StudentData.Domain.Interfaces;
 using StudentData.Services.Interfaces;
+using StudentData.Services.Interfaces.ViewModel;
 using SG = StudentData.Domain.Core;
 
 namespace StudentData.Api.Controllers
@@ -24,9 +25,9 @@ namespace StudentData.Api.Controllers
         }
         // GET: api/<GroupsController>
         [HttpGet]
-        public async Task<IEnumerable<SG.Group>> Get()
+        public async Task<PagedViewModel<GroupView>> Get(string name, int pageNumber, int pageSize)
         {
-            return await repositoryGroup.GetAll();
+            return await groupServices.GetGroups(name, pageNumber, pageSize);
         }
 
         // GET api/<GroupsController>/5
