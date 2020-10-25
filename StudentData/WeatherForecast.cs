@@ -1,6 +1,6 @@
 using System;
 
-namespace Student
+namespace StudentData
 {
     public class WeatherForecast
     {
