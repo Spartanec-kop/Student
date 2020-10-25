@@ -6,8 +6,8 @@ namespace StudentData.Domain.Core
 {
     public class Group
     {
-        public int Id { get; set; }
-        public string GroupName { get; set; }
+        public Int64 Id { get; set; }
+        public string Name { get; set; }
         public List<StudentGroup> StudentGroups { get; set; }
 
         public Group()

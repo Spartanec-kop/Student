@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StudentData.Domain.Core;
 using StudentData.Domain.Interfaces;
+using StudentData.Infrastructure.Business.ViewModel;
 using StudentData.Services.Interfaces;
+using StudentData.Services.Interfaces.Models;
+using StudentData.Services.Interfaces.ViewModel;
 
 namespace StudentData.Api.Controllers
 {
@@ -22,16 +25,16 @@ namespace StudentData.Api.Controllers
         }
         // GET: api/<StudentsController>
         [HttpGet]
-        public IEnumerable<Student> Get()
+        public async Task<PagedViewModel<StudentView>> Get([FromQuery] StudentFilters filters, int pageNumber, int pageSize)
         {
-            return repositoryStudent.GetAll();
+            return await studentsServices.GetStudents(filters, pageNumber, pageSize);
         }
 
         // GET api/<StudentsController>/5
         [HttpGet("{id}")]
-        public Student Get(int id)
+        public async Task<Student> Get(int id)
         {
-            return repositoryStudent.GetId(id);
+            return await repositoryStudent.GetId(id);
         }
 
         // POST api/<StudentsController>

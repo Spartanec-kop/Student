@@ -6,27 +6,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StudentData.Infrastructure.Data
 {
     public class GroupRepository : IRepository<Group>
     {
-        private StudentContext db;
+        private readonly StudentContext db;
         private bool disposed = false;
 
-        public GroupRepository()
+        public GroupRepository(StudentContext context)
         {
-            this.db = new StudentContext();
+            this.db = context;
         }
 
-        public IEnumerable<Group> GetAll()
+        public async Task<IEnumerable<Group>> GetAll()
         {
-            return db.Groups.ToList();
+            return await db.Groups.Include(c => c.StudentGroups).ThenInclude(sc => sc.Student).ToListAsync();
         }
 
-        public Group GetId(int id)
+        public async Task<Group> GetId(Int64 id)
         {
-            return db.Groups.Find(id);
+            return await db.Groups.Include(c => c.StudentGroups).ThenInclude(sc => sc.Student).FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public IEnumerable<Group> Find(Expression<Func<Group, bool>> predicate)
@@ -34,6 +35,13 @@ namespace StudentData.Infrastructure.Data
             IQueryable<Group> query = db.Groups.Where(predicate);
             return query.ToList();
         }
+
+        public async Task<int> recordCount(Expression<Func<Group, bool>> predicate)
+        {
+            IQueryable<Group> query = db.Groups.Where(predicate);
+            return await query.CountAsync();
+        }
+
 
         public void Create(Group item)
         {
@@ -45,7 +53,7 @@ namespace StudentData.Infrastructure.Data
             db.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Int64 id)
         {
             Group group = db.Groups.Find(id);
             if (group != null)

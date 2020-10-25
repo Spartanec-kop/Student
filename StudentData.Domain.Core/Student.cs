@@ -6,9 +6,9 @@ namespace StudentData.Domain.Core
 {
     public class Student
     {
-        public int Id { get; set; }
+        public Int64 Id { get; set; }
         public bool Sex { get; set; }
-        public string LastNam { get; set; }
+        public string LastName { get; set; }
         public string Name { get; set; }
         public string MiddleName { get; set; }
         public string NickName { get; set; }

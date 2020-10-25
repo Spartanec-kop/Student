@@ -12,10 +12,6 @@ namespace StudentData.Infrastructure.Data
         }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
-        public StudentContext()
-        {
-            Database.EnsureCreated();
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentGroup>()

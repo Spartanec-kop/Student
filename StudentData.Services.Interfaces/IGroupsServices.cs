@@ -7,6 +7,9 @@ namespace StudentData.Services.Interfaces
 {
     public interface IGroupsServices
     {
-        IEnumerable<Group> GetStudents(string name, int firstItem, int pageCount);
+        IEnumerable<Group> GetGroups(string name, int firstItem, int pageCount);
+        void Create(Group group);
+        void Update(Group group);
+        void Delete(Int64 id);
     }
 }

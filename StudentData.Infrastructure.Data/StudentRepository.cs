@@ -6,38 +6,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StudentData.Infrastructure.Data
 {
     public class StudentRepository : IRepository<Student>
     {
-        private StudentContext db;
+        private readonly StudentContext db;
         private bool disposed = false;
 
-        public StudentRepository ()
+        public StudentRepository (StudentContext context)
         {
-            this.db = new StudentContext();
+            this.db = context;
         }
 
-        public IEnumerable<Student> GetAll()
+        public async Task<IEnumerable<Student>> GetAll()
         {
-            return db.Students.ToList();
+            return await db.Students.Include(c => c.StudentGroups).ThenInclude(sc => sc.Group).ToListAsync();
         }
 
-        public Student GetId(int id)
+        public async Task<Student> GetId(Int64 id)
         {
-            return db.Students.Find(id);
+            return await db.Students.Include(c => c.StudentGroups).ThenInclude(sc => sc.Group).FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public IEnumerable<Student> Find(Expression<Func<Student, bool>> predicate)
         {
-            IQueryable<Student> query = db.Students.Where(predicate);
-            return query.ToList();
+            IQueryable<Student> query = db.Students.Include(c => c.StudentGroups).ThenInclude(sc => sc.Group).Where(predicate);
+            return query;
+        }
+        public async Task<int> recordCount(Expression<Func<Student, bool>> predicate)
+        {
+            IQueryable<Student> query = db.Students.Include(c => c.StudentGroups).ThenInclude(sc => sc.Group).Where(predicate);
+            return await query.CountAsync();
         }
 
-        public void Create(Student item)
+        public async void Create(Student item)
         {
-            db.Students.Add(item);
+            await db.Students.AddAsync(item);
         }
 
         public void Update(Student item)
@@ -45,18 +51,18 @@ namespace StudentData.Infrastructure.Data
             db.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public async void Delete(Int64 id)
         {
-            Student student = db.Students.Find(id);
+            Student student = await db.Students.FindAsync(id);
             if (student != null)
             {
                 db.Students.Remove(student);
             }
         }
 
-        public void Save()
+        public async void Save()
         {
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
         public virtual void Dispose(bool disposing)
         {

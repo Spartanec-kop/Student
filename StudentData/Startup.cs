@@ -16,6 +16,9 @@ using StudentData.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using StudentData.Domain.Interfaces;
 using StudentData.Domain.Core;
+using Newtonsoft.Json;
+using StudentData.Api;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace StudentData
 {
@@ -38,6 +41,7 @@ namespace StudentData
             services.AddTransient<IGroupsServices, GroupsServices>();
             services.AddTransient<IRepository<Student>, StudentRepository>();
             services.AddTransient<IRepository<Group>, GroupRepository>();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddControllers();
             // added CORS
             services.AddCors();
@@ -62,6 +66,7 @@ namespace StudentData
             {
                 endpoints.MapControllers();
             });
+            JsonConvert.DefaultSettings = () => ApiSettings.DefaultJsonSerializerSettings;
         }
     }
 }
