@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentData.Domain.Interfaces;
 using StudentData.Services.Interfaces;
@@ -12,6 +13,7 @@ using SG = StudentData.Domain.Core;
 namespace StudentData.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class GroupsController : ControllerBase
     {

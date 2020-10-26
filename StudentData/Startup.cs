@@ -19,6 +19,8 @@ using StudentData.Domain.Core;
 using Newtonsoft.Json;
 using StudentData.Api;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using StudentData.Infrastructure.Business.Security;
 
 namespace StudentData
 {
@@ -43,10 +45,17 @@ namespace StudentData
             services.AddTransient<IRepository<Student>, StudentRepository>();
             services.AddTransient<IRepository<Group>, GroupRepository>();
             services.AddTransient<IStudentGroupRepository, StudentGroupRepository>();
+            services.AddTransient<ITokenService, TokenService>();
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddControllers();
             // added CORS
             services.AddCors();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = AuthOptions.GetTokenParameters();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +71,7 @@ namespace StudentData
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

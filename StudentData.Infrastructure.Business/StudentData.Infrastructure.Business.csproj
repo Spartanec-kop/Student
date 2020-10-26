@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StudentData.Domain.Core\StudentData.Domain.Core.csproj" />
     <ProjectReference Include="..\StudentData.Domain.Interfaces\StudentData.Domain.Interfaces.csproj" />
     <ProjectReference Include="..\StudentData.Services.Interfaces\StudentData.Services.Interfaces.csproj" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentData.Domain.Core;
 using StudentData.Domain.Interfaces;
@@ -13,6 +14,7 @@ using StudentData.Services.Interfaces.ViewModel;
 namespace StudentData.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class StudentsController : ControllerBase
     {
