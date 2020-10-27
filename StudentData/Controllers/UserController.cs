@@ -41,11 +41,35 @@ namespace StudentData.Api.Controllers
             return _tokenService.Generate(user.Login);
         }
 
+        // GET: api/User/all
+        [HttpGet("all")]
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await db.Users.ToListAsync();
+        }
+
         // GET: api/User
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUsers()
-        {        
-            return await db.Users.ToListAsync();
+        public async Task<Object> GetUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                List<Claim> claims = identity.Claims.ToList();
+
+                User user = db.Users.FirstOrDefault(f => f.Login == claims[0].Value);
+                return new {
+                    id = user.Id,
+                    login = user.Login,
+                    firstName = user.FirstName,
+                    lastName = user.LastName,
+                    middleName = user.MiddleName
+                };
+            }
+            else
+            {
+                throw new Exception("Токен не определен");
+            }
         }
 
         // GET: api/User/5

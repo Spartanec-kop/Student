@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './../store/index'
 
 Vue.use(VueRouter)
 
@@ -8,6 +9,16 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: 'about' */ '../views/Login.vue')
+  },
+  {
+    path: '/student',
+    name: 'student',
+    component: () => import(/* webpackChunkName: 'about' */ '../views/Student.vue')
+  },
+  {
+    path: '/group',
+    name: 'group',
+    component: () => import(/* webpackChunkName: 'about' */ '../views/Group.vue')
   }
 ]
 
@@ -19,6 +30,7 @@ async function isAuthentificated () {
   let result = false
   if (localStorage.getItem('token')) {
     await store.dispatch('login/setUser')
+    console.log(store.getters['login/user'])
     if (store.getters['login/user']) {
       result = true
     } else {
@@ -36,14 +48,18 @@ router.beforeEach((to, from, next) => {
       if (!result) {
         next('/login')
       } else {
-        next()
+        if (to.path === '/') {
+          next('/student')
+        } else {
+          next()
+        }
       }
     })
   } else {
     isAuthentificated()
       .then(result => {
         if (result) {
-          next('/')
+          next('/student')
         } else {
           next()
         }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://webdev-api.loftschool.com'
+const baseUrl = 'https://localhost:44379'
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
 

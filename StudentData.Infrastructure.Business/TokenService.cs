@@ -11,11 +11,11 @@ namespace StudentData.Infrastructure.Business
 {
     public class TokenService : ITokenService
     {
-        public string Generate(string userName)
+        public string Generate(string userLogin)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userLogin)
             };
             ClaimsIdentity identity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 

@@ -24,11 +24,9 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import ModalLogout from './ModalLogout'
-import ModalNotifications from './ModalNotifications'
-import ModalPreFindData from './ModalPreFindData'
 export default {
   name: 'ModalWindow',
-  components: { ModalLogout, ModalNotifications, ModalPreFindData },
+  components: { ModalLogout },
   computed: {
     ...mapState('modal', {
       bodyComponent: state => state.bodyComponent,

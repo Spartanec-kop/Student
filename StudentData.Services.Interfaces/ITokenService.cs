@@ -7,7 +7,7 @@ namespace StudentData.Services.Interfaces
 {
     public interface ITokenService
     {
-        string Generate(string userName);
+        string Generate(string userLogin);
 
         ClaimsPrincipal DecodeToken(string jwt);
     }

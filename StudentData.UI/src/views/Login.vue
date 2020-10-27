@@ -27,11 +27,6 @@
               :isInvalid="validation.hasError('password')"
               :toolTipText="validation.firstError('password')"
             )
-        .form-input.save-me
-          input#save-me(
-            type="checkbox"
-            v-model="saveMe"
-          )
         .error-message  {{loginError}}
         button.button-wrapper#sendLoginForm(
           :class="disableButton() ? 'buttonDisabled' : '' "
@@ -95,7 +90,7 @@ export default {
     submit () {
       this.$validate().then(async success => {
         if (success) {
-          this.logIn()
+          this.logIn({ login: this.login, password: this.password })
         }
       })
     }
@@ -119,15 +114,15 @@ export default {
   z-index: -2;
 }
 .login-body {
-  height: 80vh;
+  height: max-content;
   width: 50vh;
   min-width: 450px;
-  min-height: 600px;
   max-height: 650px;
   background: linear-gradient(180deg, #40689C 0%, rgba(255, 255, 255, 0) 368.66%);
   filter: drop-shadow(-3px 6px 25px rgba(0, 48, 140, 0.18));
   border-radius: 16px;
   text-align: center;
+  padding: 40px;
 }
 .error-message{
   color: red;
@@ -142,7 +137,7 @@ export default {
   border-radius: 16px;
   cursor: pointer;
 
-  margin: 0px 30px 30px 30px;
+  margin: 10px 30px 30px 30px;
 
   font-family: Roboto;
   font-style: normal;
@@ -188,7 +183,7 @@ export default {
   margin-top: 2vh;
 }
 .form-input {
-  margin-top: 3vh;
+  margin-top: 35px;
   text-align: left;
 }
 .form-wrapper {
