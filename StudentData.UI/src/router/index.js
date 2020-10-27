@@ -30,7 +30,6 @@ async function isAuthentificated () {
   let result = false
   if (localStorage.getItem('token')) {
     await store.dispatch('login/setUser')
-    console.log(store.getters['login/user'])
     if (store.getters['login/user']) {
       result = true
     } else {

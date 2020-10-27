@@ -23,7 +23,7 @@ export default {
         commit('SET_USER', {})
       }
     },
-    logIn ({ commit }, loginData) {
+    logIn ({ commit, dispatch }, loginData) {
       commit('SET_IS_LOADING', true)
       axios
         .get(`/api/User/auth?login=${loginData.login}&password=${loginData.password}`)
@@ -31,27 +31,14 @@ export default {
           commit('SET_IS_LOADING', false)
           localStorage.setItem('token', response.data)
           axios.defaults.headers.Authorization = `Bearer ${response.data}`
-          router.push({ path: 'student' })
+          // router.push({ path: 'student' })
+          dispatch('navigate', 'student', { root: true })
         })
         .catch(error => {
           console.log(error.response)
         })
-
-      // setTimeout(() => {
-      //   commit('SET_IS_LOADING', false)
-      //   const success = true
-      //   if (success) {
-      //     const response = { data: { user: 'admin', token: 'qyuiqwuyriwqtwquiytbvsdjfvabsjk' } }
-      //     localStorage.setItem('token', response.data.token)
-      //     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`
-      //     commit('SET_USER', response.data)
-      //     router.push({ name: 'Home' })
-      //   } else {
-      //     commit('SET_LOGIN_ERROR', { error: { message: 'ошибка авторизации' } })
-      //   }
-      // }, 2000)
     },
-    logout ({ commit, dispatch }) {
+    logout ({ commit }) {
       localStorage.removeItem('token')
       router.push({ name: 'Login' })
       commit('SET_USER', '')

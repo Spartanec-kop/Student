@@ -14,10 +14,12 @@ export default new Vuex.Store({
     SET_ACTIVE_CONTENT: (state, content) => (state.activeContent = content)
   },
   actions: {
-    navigate ({ commit, dispatch }, content) {
-      commit('SET_ACTIVE_CONTENT', content)
+    navigate ({ dispatch }, content) {
       dispatch('modal/closeModal')
       router.push({ path: content })
+    },
+    setActiveContent ({ commit }, content) {
+      commit('SET_ACTIVE_CONTENT', content)
     }
   },
   modules: {
