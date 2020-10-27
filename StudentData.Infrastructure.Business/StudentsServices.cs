@@ -19,10 +19,18 @@ namespace StudentData.Infrastructure.Business
         {
             repositoryStudent = repository;
         }
-        public async void Create(Student student)
+        public void Create(Student student)
         {
-            repositoryStudent.Create(student);
-            repositoryStudent.Save();
+            int studentCount = repositoryStudent.Find(f => f.NickName.ToLower() == student.NickName.ToLower()).Count();
+            if (studentCount == 0)
+            {
+                repositoryStudent.Create(student);
+                repositoryStudent.Save();
+            } else
+            {
+                throw new Exception("Студент с таким позывным уже существует.");
+            }
+            
         }
         public async void Update(Student student)
         {
