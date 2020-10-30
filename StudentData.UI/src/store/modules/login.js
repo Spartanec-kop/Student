@@ -4,7 +4,7 @@ import router from '../../router/index'
 export default {
   namespaced: true,
   state: {
-    user: localStorage.getItem('token') ? 'admin' : '',
+    user: '',
     loginError: '',
     isLoading: false
   },

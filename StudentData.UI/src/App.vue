@@ -4,7 +4,7 @@
       v-if="showModal"
     )
     .header(
-      v-if="user"
+      v-if="Object.keys(user).length > 0"
     )
       Header
     .body-wrapper

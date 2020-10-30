@@ -65,6 +65,6 @@
     <Build Include="dbo\Tables\Students.sql" />
     <Build Include="dbo\Tables\Groups.sql" />
     <Build Include="dbo\Tables\StudentGroup.sql" />
-    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
   </ItemGroup>
 </Project>
