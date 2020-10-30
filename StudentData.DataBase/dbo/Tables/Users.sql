@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[User] (
+﻿CREATE TABLE [dbo].[Users] (
     [Id]         BIGINT        IDENTITY (1, 1) NOT NULL,
     [Login]      NVARCHAR (50) NOT NULL,
     [FirstName]  NVARCHAR (50) NOT NULL,
@@ -7,6 +7,4 @@
     [Password]   NCHAR (10)    NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
-
-
 
