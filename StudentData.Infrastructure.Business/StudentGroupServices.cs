@@ -13,9 +13,12 @@ namespace StudentData.Infrastructure.Business
         {
             studentGroupRepository = studentGroup;
         }
-        public void AddStudentToGroup(long studentId, long groupId)
+        public void AddStudentToGroup(long studentId, IEnumerable<long> groupsId)
         {
-            studentGroupRepository.AddStudentToGroup(studentId, groupId);
+            foreach(var id in groupsId)
+            {
+                studentGroupRepository.AddStudentToGroup(studentId, id);
+            }           
             studentGroupRepository.Save();
         }
 

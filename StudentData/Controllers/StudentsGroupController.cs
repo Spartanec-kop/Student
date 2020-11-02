@@ -21,9 +21,9 @@ namespace StudentData.Api.Controllers
 
         // POST api/<StudentsGroupController>
         [HttpPost]
-        public void Post(long studentId, long groupId)
+        public void Post(long studentId, IEnumerable<long> groupsId)
         {
-            StudentGroupServices.AddStudentToGroup(studentId, groupId);
+            StudentGroupServices.AddStudentToGroup(studentId, groupsId);
         }
 
         // DELETE api/<StudentsGroupController>/5

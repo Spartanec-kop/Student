@@ -4,6 +4,7 @@ import router from '../router/index'
 import login from './modules/login'
 import modal from './modules/modal'
 import student from './modules/student'
+import group from './modules/group'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   modules: {
     login,
     modal,
-    student
+    student,
+    group
   }
 })

@@ -24,9 +24,13 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import ModalLogout from './ModalLogout'
+import StudentCreate from './StudentCreate'
 export default {
   name: 'ModalWindow',
-  components: { ModalLogout },
+  components: {
+    ModalLogout,
+    StudentCreate
+  },
   computed: {
     ...mapState('modal', {
       bodyComponent: state => state.bodyComponent,

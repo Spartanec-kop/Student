@@ -7,6 +7,10 @@
       v-if="Object.keys(user).length > 0"
     )
       Header
+    multiselect(
+      v-model="selected"
+      :options="options"
+    )
     .body-wrapper
       router-view
 </template>
@@ -18,7 +22,9 @@ export default {
   components: { Header, ModalWindow },
   data () {
     return {
-      isAuthorized: true
+      isAuthorized: true,
+      selected: null,
+      options: ['list', 'of', 'options']
     }
   },
   computed: {
@@ -38,7 +44,8 @@ export default {
 @font-face {
   font-family:Roboto;
   src:url("../public/fonts/roboto/Roboto.ttf") format("truetype");
-  }
+}
+
 /* End fonts */
 body {
   margin: 0px;
@@ -48,10 +55,24 @@ ul {
   padding: 0px;
   margin: 0px;
 }
+input {
+  margin-top: 5px;
+  background: #FFFFFF;
+  border: 1px solid #C0C0C0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 25px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 14px;
+  color: #969696;
 }
 
 </style>

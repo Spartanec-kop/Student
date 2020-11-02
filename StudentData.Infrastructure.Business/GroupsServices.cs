@@ -42,7 +42,12 @@ namespace StudentData.Infrastructure.Business
 
 
             var count = await repositoryGroup.recordCount(predicat);
-            if (pageSize < 1)
+
+            if (pageNumber == 0 && pageSize == 0 )
+            {
+                pageSize = count;
+            }
+            else if (pageSize < 1)
             {
                 pageSize = 25;
             }
