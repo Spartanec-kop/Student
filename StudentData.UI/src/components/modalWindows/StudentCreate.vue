@@ -63,18 +63,6 @@
         .student-input-title
           span Группы
         .student-input-input
-          multiselect(
-            v-model="groupsList",
-            :options="options",
-            :multiple="true",
-            :close-on-select="false",
-            :clear-on-select="false",
-            :preserve-search="true",
-            placeholder="Группы"
-            label="Группы",
-            track-by="name",
-            :preselect-first="true"
-          )
   .battons
     .button-logout(
       @click="createStudent({ name, lastName, middleName, nickName, sex})"

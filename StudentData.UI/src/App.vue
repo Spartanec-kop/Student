@@ -7,10 +7,6 @@
       v-if="Object.keys(user).length > 0"
     )
       Header
-    multiselect(
-      v-model="selected"
-      :options="options"
-    )
     .body-wrapper
       router-view
 </template>
